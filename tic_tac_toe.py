@@ -14,10 +14,11 @@ list(map(
           text=text,
           font="times 15").grid(row=0, column=column),
     ["player 1: X", "player 2: O"],
-    range(2)
+    [1, 2]
 ))
 
-digits = range(9)
+digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# #list(range(1, 10))
 mark = ''
 count = 0
 panels = ["panel"]*10
@@ -69,7 +70,7 @@ def win_checker(digit):
                         panels=panels,
                         button=button1)
 
-    elif digit == 2 and digit in digits:
+    if digit == 2 and digit in digits:
         inner_win_check(digits=digits,
                         digit=digit,
                         count=count,
@@ -77,68 +78,14 @@ def win_checker(digit):
                         panels=panels,
                         button=button2)
 
-    elif digit == 3 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button3)
 
-    elif digit == 4 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button4)
-
-    elif digit == 5 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button5)
-
-    elif digit == 6 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button6)
-
-    elif digit == 7 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button7)
-
-    elif digit == 8 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button8)
-
-    elif digit == 9 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button9)
-
-    if(count > 8 and
-       win_combinations(panels=panels, sign='X') == FALSE and
-       win_combinations(panels=panels, sign='O') == TRUE):
-        msg.showinfo("Result", "Match Tied")
-        root.destroy()
+# Buttons to execute commands ----
+button1 = Button(root, width=15, font=('Times 16 bold'),
+                 height=7, command=lambda: win_checker(1))
+button1.grid(row=1, column=1)
+button2 = Button(root, width=15, height=7, font=(
+    'Times 16 bold'), command=lambda: win_checker(2))
+button2.grid(row=1, column=2)
 
 # .0 Execution
-
 root.mainloop()

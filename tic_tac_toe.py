@@ -1,6 +1,7 @@
 # 0.0 Import Modules ----
 
 from tkinter import *
+from tkinter import ttk
 import tkinter.messagebox as msg
 
 # 1.0 Dialog Box Generator ----
@@ -37,55 +38,99 @@ def win_combinations(panels, sign):
     )
 
 
-def inner_win_check(digits, digit, count, mark, panels, button):
-    digits.remove(digit)
+# def inner_win_check(digits, digit, count, mark, panels, button):
+#     digits.remove(digit)
 
-    if count % 2 == 0:
-        mark = 'X'
-        panels[digit] = mark
-    elif count % 2 != 0:
-        mark = 'O'
-        panels[digit] = mark
+#     if count % 2 == 0:
+#         mark = 'X'
+#         panels[digit] = mark
+#     elif count % 2 != 0:
+#         mark = 'O'
+#         panels[digit] = mark
 
-    button.config(text=mark)
-    count = count + 1
-    sign = mark
+#     button.config(text=mark)
+#     count = count + 1
+#     sign = mark
 
-    if(win_combinations(panels, sign) and sign == 'X'):
-        msg.showinfo("Result", "Player 1 wins")
-        root.destroy()
-    elif(win_combinations(panels, sign) and sign == 'O'):
-        msg.showinfo("Result", "Player 2 wins")
-        root.destroy()
+#     if(win_combinations(panels, sign) and sign == 'X'):
+#         msg.showinfo("Result", "Player 1 wins")
+#         root.destroy()
+#     elif(win_combinations(panels, sign) and sign == 'O'):
+#         msg.showinfo("Result", "Player 2 wins")
+#         root.destroy()
 
 
 def win_checker(digit):
     global digits, mark, count
 
     if digit == 1 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button1)
+        digits.remove(digit)
 
-    if digit == 2 and digit in digits:
-        inner_win_check(digits=digits,
-                        digit=digit,
-                        count=count,
-                        mark=mark,
-                        panels=panels,
-                        button=button2)
+        if count % 2 == 0:
+            mark = 'X'
+            panels[digit] = mark
+        elif count % 2 != 0:
+            mark = 'O'
+            panels[digit] = mark
+
+        button1.config(text=mark)
+        count = count + 1
+        sign = mark
+
+        if(win_combinations(panels, sign) and sign == 'X'):
+            msg.showinfo("Result", "Player 1 wins")
+            root.destroy()
+        elif(win_combinations(panels, sign) and sign == 'O'):
+            msg.showinfo("Result", "Player 2 wins")
+            root.destroy()
+
+    elif digit == 2 and digit in digits:
+        digits.remove(digit)
+
+        if count % 2 == 0:
+            mark = 'X'
+            panels[digit] = mark
+        elif count % 2 != 0:
+            mark = 'O'
+            panels[digit] = mark
+
+        button2.config(text=mark)
+        count = count + 1
+        sign = mark
+
+        if(win_combinations(panels, sign) and sign == 'X'):
+            msg.showinfo("Result", "Player 1 wins")
+            root.destroy()
+        elif(win_combinations(panels, sign) and sign == 'O'):
+            msg.showinfo("Result", "Player 2 wins")
+            root.destroy()
 
 
 # Buttons to execute commands ----
-button1 = Button(root, width=15, font=('Times 16 bold'),
-                 height=7, command=lambda: win_checker(1))
-button1.grid(row=1, column=1)
-button2 = Button(root, width=15, height=7, font=(
-    'Times 16 bold'), command=lambda: win_checker(2))
-button2.grid(row=1, column=2)
+
+def button_creation(button_name, digit, row, column):
+    listOfGlobals = globals()
+    listOfGlobals[button_name] = Button(root,
+                                        width=15,
+                                        font=('Times 16 bold'),
+                                        height=7,
+                                        command=lambda: win_checker(digit=digit))
+    listOfGlobals[button_name].grid(row=row, column=column)
+
+
+list(map(button_creation,
+         ["button1", "button2"],
+         [1, 2],
+         [1, 1],
+         [1, 2]))
+# button_creation(button_name="button1",
+#                 digit=1,
+#                 row=1,
+#                 column=1)
+# button_creation(button_name="button2",
+#                 digit=2,
+#                 row=1,
+#                 column=2)
 
 # .0 Execution
 root.mainloop()

@@ -71,38 +71,38 @@ def win_checker(digit):
                           panels=panels,
                           button=button1)
 
-    if digit == 2 and digit in digits:
+    elif digit == 2 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
                           button=button2)
-    if digit == 3 and digit in digits:
+    elif digit == 3 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
-                          button=button2)
-    if digit == 4 and digit in digits:
+                          button=button3)
+    elif digit == 4 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
-                          button=button2)
-    if digit == 5 and digit in digits:
+                          button=button4)
+    elif digit == 5 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
-                          button=button2)
-    if digit == 6 and digit in digits:
+                          button=button5)
+    elif digit == 6 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
-                          button=button2)
-    if digit == 7 and digit in digits:
+                          button=button6)
+    elif digit == 7 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
-                          button=button2)
-    if digit == 8 and digit in digits:
+                          button=button7)
+    elif digit == 8 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
-                          button=button2)
-    if digit == 9 and digit in digits:
+                          button=button8)
+    elif digit == 9 and digit in digits:
         inner_win_checker(digit=digit,
                           panels=panels,
-                          button=button2)
+                          button=button9)
     if(count > 8 and
        win_combinations(panels=panels, sign='X') == FALSE and
        win_combinations(panels=panels, sign='O') == TRUE):

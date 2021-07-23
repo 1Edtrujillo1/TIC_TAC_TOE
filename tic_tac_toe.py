@@ -38,75 +38,79 @@ def win_combinations(panels, sign):
     )
 
 
-# def inner_win_check(digits, digit, count, mark, panels, button):
-#     digits.remove(digit)
+def inner_win_checker(digit, panels, button):
 
-#     if count % 2 == 0:
-#         mark = 'X'
-#         panels[digit] = mark
-#     elif count % 2 != 0:
-#         mark = 'O'
-#         panels[digit] = mark
+    global digits, mark, count
 
-#     button.config(text=mark)
-#     count = count + 1
-#     sign = mark
+    digits.remove(digit)
 
-#     if(win_combinations(panels, sign) and sign == 'X'):
-#         msg.showinfo("Result", "Player 1 wins")
-#         root.destroy()
-#     elif(win_combinations(panels, sign) and sign == 'O'):
-#         msg.showinfo("Result", "Player 2 wins")
-#         root.destroy()
+    if count % 2 == 0:
+        mark = 'X'
+        panels[digit] = mark
+    elif count % 2 != 0:
+        mark = 'O'
+        panels[digit] = mark
+
+    button.config(text=mark)
+    count = count + 1
+    sign = mark
+
+    if(win_combinations(panels, sign) and sign == 'X'):
+        msg.showinfo("Result", "Player 1 wins")
+        root.destroy()
+    elif(win_combinations(panels, sign) and sign == 'O'):
+        msg.showinfo("Result", "Player 2 wins")
+        root.destroy()
 
 
 def win_checker(digit):
     global digits, mark, count
 
     if digit == 1 and digit in digits:
-        digits.remove(digit)
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button1)
 
-        if count % 2 == 0:
-            mark = 'X'
-            panels[digit] = mark
-        elif count % 2 != 0:
-            mark = 'O'
-            panels[digit] = mark
-
-        button1.config(text=mark)
-        count = count + 1
-        sign = mark
-
-        if(win_combinations(panels, sign) and sign == 'X'):
-            msg.showinfo("Result", "Player 1 wins")
-            root.destroy()
-        elif(win_combinations(panels, sign) and sign == 'O'):
-            msg.showinfo("Result", "Player 2 wins")
-            root.destroy()
-
-    elif digit == 2 and digit in digits:
-        digits.remove(digit)
-
-        if count % 2 == 0:
-            mark = 'X'
-            panels[digit] = mark
-        elif count % 2 != 0:
-            mark = 'O'
-            panels[digit] = mark
-
-        button2.config(text=mark)
-        count = count + 1
-        sign = mark
-
-        if(win_combinations(panels, sign) and sign == 'X'):
-            msg.showinfo("Result", "Player 1 wins")
-            root.destroy()
-        elif(win_combinations(panels, sign) and sign == 'O'):
-            msg.showinfo("Result", "Player 2 wins")
-            root.destroy()
-
+    if digit == 2 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if digit == 3 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if digit == 4 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if digit == 5 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if digit == 6 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if digit == 7 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if digit == 8 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if digit == 9 and digit in digits:
+        inner_win_checker(digit=digit,
+                          panels=panels,
+                          button=button2)
+    if(count > 8 and
+       win_combinations(panels=panels, sign='X') == FALSE and
+       win_combinations(panels=panels, sign='O') == TRUE):
+        msg.showinfo("Result", "Match Tied")
+        root.destroy()
 
 # Buttons to execute commands ----
+
 
 def button_creation(button_name, digit, row, column):
     listOfGlobals = globals()
@@ -119,10 +123,18 @@ def button_creation(button_name, digit, row, column):
 
 
 list(map(button_creation,
-         ["button1", "button2"],
-         [1, 2],
-         [1, 1],
-         [1, 2]))
+         ["button1", "button2", "button3",
+          "button4", "button5", "button6",
+          "button7", "button8", "button9"],
+         [1, 2, 3,
+          4, 5, 6,
+          7, 8, 9],
+         [1, 1, 1,
+          2, 2, 2,
+          3, 3, 3],
+         [1, 2, 3,
+          1, 2, 3,
+          1, 2, 3]))
 # button_creation(button_name="button1",
 #                 digit=1,
 #                 row=1,
